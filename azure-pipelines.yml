@@ -2,7 +2,7 @@ trigger:
 - main  # Cambia por la rama que desees
 
 pool:
-  vmImage: 'windows-latest'  # Asegúrate de que este agente tenga MSBuild
+  vmImage: 'Genexus'  # Asegúrate de que este agente tenga MSBuild
 
 variables:
   MSBuild: 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\MSBuild\\Current\\Bin'
@@ -13,8 +13,6 @@ variables:
 jobs:
 - job: UpdateGXServer
   displayName: 'Update GX Server'
-  pool:
-    vmImage: 'windows-latest'
   steps:
   - script: |
       echo "Executing: $(MSBuild)\\msbuild.exe \"msbuild\\Update.msbuild\" /p:KBPath=\"$(KBPath)\" /p:ServerUserName=\"$(ServerUserName)\" /p:ServerPassword=\"$(ServerPassword)\" /t:Update"
