@@ -1,19 +1,24 @@
-# Starter pipeline
-# Start with a minimal pipeline that you can customize to build and deploy your code.
-# Add steps that build, run tests, deploy, and more:
-# https://aka.ms/yaml
-
 trigger:
-- main
+- main  # O la rama que prefieras para disparar el pipeline
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'windows-latest'  # O especifica un agente similar a 'AR-DEV-JNODE-3'
 
-steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+variables:
+  MSBuild: 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\MSBuild\\Current\\Bin'
+  KBPath: 'C:\\Models\\Estimaciones'
+  ServerUserName: 'sa_jenkins_genexus'
+  ServerPassword: '567NTb0L4L4wjK4hZkAl'
+  
+  updateMSBuildScript: '"$(MSBuild)\\msbuild.exe" "msbuild\\Update.msbuild" ' +
+                       '/p:KBPath="$(KBPath)" ' + 
+                       '/p:ServerUserName="$(ServerUserName)" ' +
+                       '/p:ServerPassword="$(ServerPassword)"'
 
-- script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+jobs:
+- job: UpdateGXServer
+  steps:
+  - script: |
+      echo "$(updateMSBuildScript)"
+      "$(MSBuild)\\msbuild.exe" "msbuild\\Update.msbuild" /p:KBPath="$(KBPath)" /p:ServerUserName="$(ServerUserName)" /p:ServerPassword="$(ServerPassword)" /t:Update
+    displayName: 'Update gxserver script'
