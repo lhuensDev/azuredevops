@@ -1,24 +1,22 @@
 trigger:
-- main  # O la rama que prefieras para disparar el pipeline
+- main  # Cambia por la rama que desees
 
 pool:
-  vmImage: 'windows-latest'  # O especifica un agente similar a 'AR-DEV-JNODE-3'
+  vmImage: 'windows-latest'  # Asegúrate de que este agente tenga MSBuild
 
 variables:
   MSBuild: 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\MSBuild\\Current\\Bin'
   KBPath: 'C:\\Models\\Estimaciones'
   ServerUserName: 'sa_jenkins_genexus'
   ServerPassword: '567NTb0L4L4wjK4hZkAl'
-  
-  updateMSBuildScript: '"$(MSBuild)\\msbuild.exe" "msbuild\\Update.msbuild" ' +
-                       '/p:KBPath="$(KBPath)" ' + 
-                       '/p:ServerUserName="$(ServerUserName)" ' +
-                       '/p:ServerPassword="$(ServerPassword)"'
 
 jobs:
 - job: UpdateGXServer
+  displayName: 'Update GX Server'
+  pool:
+    vmImage: 'windows-latest'
   steps:
   - script: |
-      echo "$(updateMSBuildScript)"
-      "$(MSBuild)\\msbuild.exe" "msbuild\\Update.msbuild" /p:KBPath="$(KBPath)" /p:ServerUserName="$(ServerUserName)" /p:ServerPassword="$(ServerPassword)" /t:Update
+      echo "Executing: $(MSBuild)\\msbuild.exe \"msbuild\\Update.msbuild\" /p:KBPath=\"$(KBPath)\" /p:ServerUserName=\"$(ServerUserName)\" /p:ServerPassword=\"$(ServerPassword)\" /t:Update"
+      & "$(MSBuild)\\msbuild.exe" "msbuild\\Update.msbuild" /p:KBPath="$(KBPath)" /p:ServerUserName="$(ServerUserName)" /p:ServerPassword="$(ServerPassword)" /t:Update
     displayName: 'Update gxserver script'
