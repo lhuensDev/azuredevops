@@ -5,8 +5,7 @@ jobs:
 - job: UpdateGXServer
   displayName: 'Update GX Server'
   steps:
-  - powershell: |
-      & "C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe" "C:\Users\lhuens\Desktop\msbuild.msbuild" /t:Update /p:KBPath="C:\Models\GX18U9\SelectorCastrol"
+  - powershell: "C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe" "C:\Users\lhuens\Desktop\msbuild.msbuild" /t:Update /p:KBPath="C:\Models\GX18U9\SelectorCastrol"
     displayName: 'Ejecutar MSBuild'
 
 
