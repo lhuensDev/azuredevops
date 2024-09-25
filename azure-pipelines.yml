@@ -14,7 +14,7 @@ jobs:
 - job: UpdateGXServer
   displayName: 'Update GX Server'
   demands:
-    - agent.name -equals 'NombreDelAgenteEspecifico'  # Opcional, solo si es necesario
+    - agent.name -equals 'AP-ARG-PF4HA25Z'  # Opcional, solo si es necesario
   steps:
   - script: |
       echo "Ejecutando script en el pool de agentes."
