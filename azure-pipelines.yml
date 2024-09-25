@@ -2,7 +2,7 @@ trigger:
 - main  # Cambia por la rama que desees
 
 pool:
-  vmImage: 'Genexus'  # Asegúrate de que este agente tenga MSBuild
+  vmImage: 'AP-ARG-PF4HA25Z'  # Asegúrate de que este agente tenga MSBuild
 
 variables:
   MSBuild: 'C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\BuildTools\\MSBuild\\Current\\Bin'
