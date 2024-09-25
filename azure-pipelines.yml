@@ -5,7 +5,8 @@ jobs:
 - job: UpdateGXServer
   displayName: 'Update GX Server'
   steps:
-  - poweshell: |
+  - powershell: |
       echo "Ejecutando script en el pool de agentes."
       # Aquí van tus comandos
     displayName: 'Ejecutar comandos'
+
