@@ -6,7 +6,7 @@ jobs:
   displayName: 'Update GX Server'
   steps:
   - powershell: |
-      echo "Ejecutando script en el pool de agentes."
-      # Aquí van tus comandos
-    displayName: 'Ejecutar comandos'
+      & "C:\Program Files\Microsoft Visual Studio\2022\Professional\MSBuild\Current\Bin\MSBuild.exe" "C:\Users\lhuens\Desktop\msbuild.msbuild" /t:Update /p:KBPath="C:\Models\GX18U9\SelectorCastrol"
+    displayName: 'Ejecutar MSBuild'
+
 
