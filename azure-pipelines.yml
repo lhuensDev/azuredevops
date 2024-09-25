@@ -1,20 +1,9 @@
-trigger:
-- main  # Cambia por la rama que desees
-
 pool:
-  name: 'Genexus'  # Asegúrate de que este agente tenga MSBuild
-
-variables:
-  MSBuild: 'C:\Program Files (x86)\Microsoft Visual Studio\2019\BuildTools\MSBuild\Current\Bin'
-  KBPath: 'C:\Models\Estimaciones'
-  ServerUserName: 'sa_jenkins_genexus'
-  ServerPassword: '567NTb0L4L4wjK4hZkAl'
+  name: 'Genexus'  # Reemplaza con el nombre de tu pool
 
 jobs:
 - job: UpdateGXServer
   displayName: 'Update GX Server'
-  demands:
-    - agent.name -equals 'AP-ARG-PF4HA25Z'  # Opcional, solo si es necesario
   steps:
   - script: |
       echo "Ejecutando script en el pool de agentes."
